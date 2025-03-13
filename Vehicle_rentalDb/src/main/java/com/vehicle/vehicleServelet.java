@@ -47,8 +47,6 @@ public class vehicleServelet extends HttpServlet {
 				
 				
 			}
-			
-			
 		}
 		
 		if ("updateToUnavailable".equals(task)) {
@@ -56,8 +54,6 @@ public class vehicleServelet extends HttpServlet {
 			try {
 			String id = request.getParameter("vehicleId");
 			String Userid = request.getParameter("id");
-			
-			
 			
 			boolean result = vehicleUtil.makeUnavailable(id);
 			List<vehicle> vehicleList = vehicleUtil.getAllVehicleOfUser(Userid);
@@ -69,11 +65,8 @@ public class vehicleServelet extends HttpServlet {
                 dispatcher.forward(request, response);
 			}
 			
-			
 			}catch(Exception e) {
-				
-				
-				
+					
 			}
 		}
 		if ("updateToAvailable".equals(task)) {

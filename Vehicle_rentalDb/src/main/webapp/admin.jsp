@@ -11,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <style>
     body {
-        background-color: #f8f9fa;
+        background: linear-gradient(to right, #c9d6ff, #e2e2e2);
     }
 
     .container {
@@ -25,7 +25,7 @@
     }
 
     .card-header {
-        background-color: #007bff;
+        background-color: #1E3A8A ;
         color: #fff;
         border-radius: 10px 10px 0 0;
     }

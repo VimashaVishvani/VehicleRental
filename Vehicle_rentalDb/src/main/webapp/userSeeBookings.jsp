@@ -8,19 +8,24 @@
 <title>Bookings</title>
 <!-- Bootstrap CSS link -->
 <%@ include file="common_header.jsp"%>
-
+ <style>
+    body {
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      margin-top: 100px
+    </style>
 </head>
 <body>
 <%@ include file="dashboardNav.jsp"%>
 	<div class="dashboard">
 		<div class="row">
-			<div class="col-6">
+		<!--  <div class="col-6">
 				<h1>View Bookings.</h1>
 			</div>
 			<div class="col-3"></div>
 			<div class="col-3">
 				<a href="registeredUser.jsp" class="btn btn-primary">back</a>
-			</div>
+			</div>-->
+			
 
 		</div>
 

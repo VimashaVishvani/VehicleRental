@@ -7,7 +7,10 @@
 <%@ include file="common_header.jsp"%>
 	<meta charset="UTF-8">
     <title>Registrations</title>
-    
+     <style>
+    body {
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      </style>
 </head>
 <body>
 <%@ include file="dashboardNav.jsp"%>

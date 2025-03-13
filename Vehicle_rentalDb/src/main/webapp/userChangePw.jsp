@@ -13,15 +13,36 @@ String pw = request.getParameter("pw");
 <%@ include file="common_header.jsp"%>
 <!-- Include Bootstrap CSS -->
 
-	<!-- <style>
-			body {
-		      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
-		      height: 100vh;
-		      display: flex;
-		      align-items: center;
-		      justify-content: center;
-    		}	
-		</style> -->
+<style>
+    body {
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-form {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 390px;
+    }
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: semi-bold;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .btn-primary {
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
 	<%@ include file="dashboardNav.jsp"%>
@@ -45,7 +66,7 @@ String pw = request.getParameter("pw");
         </div> --%>
 		<div class="row">
 			<div class="col"></div>
-			<div class="col">
+			<div class="col login-form">
 				<h2>Change Password</h2>
 
 				<form action="UserServlet" method="get">
