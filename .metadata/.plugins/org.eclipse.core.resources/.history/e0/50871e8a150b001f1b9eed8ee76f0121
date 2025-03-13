@@ -1,0 +1,48 @@
+package com.user;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ViewServlet")
+public class ViewServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+
+        try {
+            // Fetch all users from the database
+            List<user> users = userDbUtil.getAllUsers();
+            request.setAttribute("users",users);
+            
+            // Check if there are any users
+            if (users.isEmpty()) {
+                out.println("<h2>No users found</h2>");
+            } else {
+                // Print user details
+                out.println("<h2>User List</h2>");
+                RequestDispatcher dis = request.getRequestDispatcher("ViewUsers.jsp");
+				dis.forward(request, response);
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<h2>Error occurred while fetching users</h2>");
+            // Handle exception appropriately
+        }
+
+        out.println("</body></html>");
+    }
+}

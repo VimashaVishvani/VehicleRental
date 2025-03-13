@@ -1,0 +1,85 @@
+package com.VehicleOwner;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.user.DBconnect;
+import com.user.user;
+
+public class vApplicationUtil {
+	private static Connection con = null;
+	private static ResultSet rs = null;
+	private static Statement stmt = null;
+	
+	public static boolean insertData(vehicleApplication application1) {
+	String sql =" ";
+	
+		try {
+			con = DBconnect.getConnection();
+			stmt = con.createStatement();
+			
+		    String vType= application1.getvType();
+		    String vModelName= application1.getvModelName();
+		    String vBrand = application1.getvBrand();
+		    int noOfSeats = application1.getNoOfSeats();
+		    double price =application1.getPrice();
+		    String ownerId =application1.getOwnerId();
+		    String status= application1.getStatus();		    
+		      sql = "INSERT INTO regapplication (vType, vModelName, vBrand, noOfSeats, price, ownerId,status) " +
+		                     "VALUES ('" + vType + "', '" + vModelName + "', '" + vBrand + "', " +
+		                     noOfSeats + ", " + price + ", '" + ownerId + "','"+status+"')";
+		      
+		        
+		     
+		      int rowsAffected = stmt.executeUpdate(sql);
+		        
+		        // Check if insertion was successful
+		        if (rowsAffected > 0) {
+		            return true;
+		        } else {
+		            return false;
+		        }
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	
+
+	}
+	
+	public static List<vehicleApplication> getAllRegistartionsOfUser(String id) throws SQLException {
+	    List<vehicleApplication> applications = new ArrayList<>();
+	    
+	    try {
+	    	con=DBconnect.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM regapplication WHERE ownerId='"+id+"'";
+			rs = stmt.executeQuery(sql);
+			 while (rs.next()) {
+		            int idNo = rs.getInt("id");
+		            String vType = rs.getString("vType");
+		            String vModelName = rs.getString("vModelName");
+		            String vBrand = rs.getString("vBrand");
+		            int noOfSeats = rs.getInt("noOfSeats");
+		            Double price = rs.getDouble("price");
+		            String status = rs.getString("status");
+		            vehicleApplication regAppli = new vehicleApplication(vType, vModelName, vBrand, noOfSeats, price,id);
+		            regAppli.setStatus(status);
+		            applications.add(regAppli);
+		        }
+	    }catch(Exception e) {
+			e.printStackTrace();
+		}
+	    
+	    
+	    
+	 
+	    return applications;
+	}
+
+}

@@ -1,0 +1,36 @@
+package com.user;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ViewServlet")
+public class ViewServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		 try {
+	            // Fetch all users from the database
+	            List<user> users = userDbUtil.getAllUsers();
+	            
+	            // Set the users as an attribute in the request
+	            request.setAttribute("users", users);
+	            
+	            // Forward the request to a JSP for rendering
+	            request.getRequestDispatcher("/users.jsp").forward(request, response);
+	        } catch ( Exception e) {
+	            e.printStackTrace();
+	            // Handle SQLException
+	        }
+	}
+
+
+
+}

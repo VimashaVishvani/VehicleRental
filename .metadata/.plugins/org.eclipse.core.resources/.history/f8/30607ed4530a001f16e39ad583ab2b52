@@ -1,0 +1,122 @@
+package com.user;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class userDbUtil {
+	private static boolean isSuccess;
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+    
+	public static boolean validate(String username, String password) {
+		
+		try {
+			con = DBconnect.getConnection();
+			stmt = con.createStatement();
+			String sql = "select * from user where gmail='"+username+"' and password='"+password+"'";
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) {
+				isSuccess = true;
+			} else {
+				isSuccess = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return isSuccess;
+	}
+
+
+
+public static List<user> getUser(String userName) {
+	
+	ArrayList<user> user = new ArrayList<>();
+	
+	try {
+		
+		con = DBconnect.getConnection();
+		stmt = con.createStatement();
+		String sql = "select * from user where gmail='"+userName+"'";
+		rs = stmt.executeQuery(sql);
+		
+		while (rs.next()) {
+			int id = rs.getInt(1);
+			String name = rs.getString(2);
+			String password = rs.getString(3);
+			String email = rs.getString(4);
+			String phone = rs.getString(5);
+			String role = rs.getString(6);
+			
+			
+			user cus = new user(id,name,password,email,phone,role);
+			user.add(cus);
+		}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	return user;	
+}
+public static String getUserRole(String userName) {
+	String role = null;
+	
+	try {
+		con=DBconnect.getConnection();
+		stmt = con.createStatement();
+		String sql = "select role from user where gmail='"+userName+"'";
+		rs = stmt.executeQuery(sql);
+		
+		while(rs.next()) {
+			role=rs.getString("role");
+		}
+	}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+	
+	return role;
+}
+
+
+
+public List<user> getAllUsers() throws SQLException {
+    List<user> users = new ArrayList<>();
+    
+    try {
+    	con=DBconnect.getConnection();
+		stmt = con.createStatement();
+		String sql = "SELECT * FROM user";
+		rs = stmt.executeQuery(sql);
+		 while (rs.next()) {
+	            int id = rs.getInt("id");
+	            String name = rs.getString("name");
+	            String password = rs.getString("password");
+	            String email = rs.getString("gmail");
+	            String phoneNumber = rs.getString("phonNumber");
+	            String role = rs.getString("role");
+	            user user = new user(id, name, password, email, phoneNumber, role);
+	            users.add(user);
+	        }
+    }catch(Exception e) {
+		e.printStackTrace();
+	}
+    
+    
+    
+ 
+    return users;
+}
+
+
+}

@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 	<%
+        String id = request.getParameter("id");
+ 		String result= request.getParameter("result");
+        out.println(id);
+        out.println(result);      
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registrations</title>
+</head>
+<body>
+    <h1>Registration List</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+        </tr>
+        <c:forEach var="application" items="${Applications}">
+            <tr>
+                <td>${application.vType}</td>
+                <td>${user.vModelName}</td>
+                <td>${user.vBrand}</td>
+                <td>${user.noOfSeats}</td>
+                <td>${user.price}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</body>
+</html>

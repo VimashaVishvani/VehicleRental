@@ -1,0 +1,15 @@
+127.0.0.1 - - [08/May/2024:21:14:18 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:14:18 +0530] "GET /Vehicle_rentalDb/login.jsp HTTP/1.1" 200 1923
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:14:18 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:14:26 +0530] "POST /Vehicle_rentalDb/log HTTP/1.1" 200 1670
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:14:27 +0530] "GET /Vehicle_rentalDb/addVehicle.jsp?id=3 HTTP/1.1" 200 2640
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:14:30 +0530] "POST /Vehicle_rentalDb/sR HTTP/1.1" 200 6
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:15:34 +0530] "POST /Vehicle_rentalDb/sR HTTP/1.1" 200 6
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:15:45 +0530] "GET /Vehicle_rentalDb/login.jsp HTTP/1.1" 200 1923
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:15:54 +0530] "POST /Vehicle_rentalDb/log HTTP/1.1" 200 1670
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:15:55 +0530] "GET /Vehicle_rentalDb/addVehicle.jsp?id=3 HTTP/1.1" 200 2640
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:15:58 +0530] "POST /Vehicle_rentalDb/sR HTTP/1.1" 200 3
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:16:23 +0530] "GET /Vehicle_rentalDb/login.jsp HTTP/1.1" 200 1923
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:16:30 +0530] "POST /Vehicle_rentalDb/log HTTP/1.1" 200 1670
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:16:31 +0530] "GET /Vehicle_rentalDb/addVehicle.jsp?id=3 HTTP/1.1" 200 2640
+0:0:0:0:0:0:0:1 - - [08/May/2024:21:16:34 +0530] "POST /Vehicle_rentalDb/sR HTTP/1.1" 200 6

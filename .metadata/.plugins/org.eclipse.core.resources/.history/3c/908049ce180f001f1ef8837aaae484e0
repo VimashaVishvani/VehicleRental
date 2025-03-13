@@ -1,0 +1,63 @@
+package com.booking;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import com.user.DBconnect;
+
+public class bookingUtil {
+
+	
+	private static Connection con = null;
+	private static ResultSet rs = null;
+	private static Statement stmt = null;
+}
+	public static boolean addbooking(booking book1) {
+		 public static boolean addBooking(booking booking) {
+		        // Initialize the connection and statement
+		        Connection connection = null;
+		        Statement statement = null;
+		        
+		        // SQL query to insert a new booking
+		        String sql = "INSERT INTO bookings (userid, vid, datefrom, noOfdays, price) VALUES ('" 
+		            + booking.getUserId() + "', '" 
+		            + booking.getVid() + "', '" 
+		            + booking.getStartingDate() + "', " 
+		            + booking.getDuration() + ", " 
+		            + booking.getTotal() + ")";
+		        
+		        try {
+		            // Get a connection from the connection pool
+		            connection = DBconnect.getConnection();
+		            
+		            // Create a statement
+		            statement = connection.createStatement();
+		            
+		            // Execute the query
+		            int rowsAffected = statement.executeUpdate(sql);
+		            
+		            // Check if the insertion was successful
+		            if (rowsAffected > 0) {
+		                return true;
+		            }
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        } finally {
+		            // Close the statement and connection
+		            try {
+		                if (statement != null) {
+		                    statement.close();
+		                }
+		                if (connection != null) {
+		                    connection.close();
+		                }
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		        
+		        return false;
+		    }
+}

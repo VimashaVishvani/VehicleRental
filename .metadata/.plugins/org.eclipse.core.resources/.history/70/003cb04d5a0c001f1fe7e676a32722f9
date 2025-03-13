@@ -1,0 +1,55 @@
+package com.VehicleOwner;
+
+//import com.user.DBconnect;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/submitApplication")
+public class submitApplication extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+     
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+         
+       
+		
+		String vType = request.getParameter("vType");
+        String vModelName = request.getParameter("vModelName");
+        String vBrand = request.getParameter("vBrand");
+        int noOfSeats = Integer.parseInt(request.getParameter("noOfSeats"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        String ownerId = request.getParameter("ownerId"); // Assuming ownerId is passed from the form
+
+        // Create a VehicleApplication object
+        vehicleApplication vehicleApp = new vehicleApplication(vType, vModelName, vBrand, noOfSeats, price, ownerId);
+        
+        boolean result = false;
+		try {
+			result = vApplicationUtil.insertData(vehicleApp);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        if(result) {
+        	response.getWriter().println("successfully added");
+        }else {
+        	response.getWriter().println("failed");
+        }
+        
+        // Print vehicle application details (optional)
+      
+        // Redirect to a success page (for demonstration purposes)
+      
+		
+	}
+
+}

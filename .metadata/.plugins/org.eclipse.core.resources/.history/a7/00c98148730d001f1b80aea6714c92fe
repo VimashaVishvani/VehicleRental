@@ -1,0 +1,56 @@
+package com.VehicleOwner;
+import java.sql.Connection;
+
+import java.sql.Statement;
+
+
+import com.user.DBconnect;
+
+public class vApplicationUtil {
+	private static Connection con = null;
+
+	private static Statement stmt = null;
+	
+	public static boolean insertData(vehicleApplication application1) {
+	String sql =" ";
+	
+		try {
+			con = DBconnect.getConnection();
+			stmt = con.createStatement();
+			
+		    String vType= application1.getvType();
+		    String vModelName= application1.getvModelName();
+		    String vBrand = application1.getvBrand();
+		    int noOfSeats = application1.getNoOfSeats();
+		    double price =application1.getPrice();
+		    String ownerId =application1.getOwnerId();
+		    
+		      sql = "INSERT INTO regapplication (vType, vModelName, vBrand, noOfSeats, price, ownerId) " +
+		                     "VALUES ('" + vType + "', '" + vModelName + "', '" + vBrand + "', " +
+		                     noOfSeats + ", " + price + ", '" + ownerId + "')";
+		        
+		     
+		      int rowsAffected = stmt.executeUpdate(sql);
+		        
+		        // Check if insertion was successful
+		        if (rowsAffected > 0) {
+		            return true;
+		        } else {
+		            return false;
+		        }
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	
+
+		
+
+		
+	
+	
+
+}
+}

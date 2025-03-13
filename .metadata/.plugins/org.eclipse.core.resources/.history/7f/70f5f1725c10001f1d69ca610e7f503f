@@ -1,0 +1,49 @@
+package com.user;
+
+public class user {
+    private int id;
+    private String name;
+    private String password;
+    private String gmail;
+    private String phoneNumber;
+    private String role;
+
+    // Default constructor
+    public user() {
+    }
+
+    // Overloaded constructor with all attributes
+    public user(int id, String name, String password, String gmail, String phoneNumber, String role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.gmail = gmail;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
+
+    // Getters for all attributes
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getRole() {
+        return role;
+    }
+}

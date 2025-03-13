@@ -1,0 +1,53 @@
+package com.booking;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/bookingServlet")
+public class bookingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().println("hi");
+		String task = request.getParameter("task");
+		
+		if ("booktheCar".equals(task)) {
+			 	String userId = request.getParameter("userId");
+		        String vehicleId = request.getParameter("vehicleId");
+		        String startDateStr = request.getParameter("startDate");
+		        String totPriceStr = request.getParameter("totalPrice");
+		        String noOfDaysStr = request.getParameter("duration");
+		        
+		        
+		        
+		        int noOfDays = Integer.parseInt(noOfDaysStr);
+		        int price =Integer.parseInt(totPriceStr);
+		        
+		        
+
+		        // Create a new booking object with the provided parameters
+		        booking book1 = new booking(userId, vehicleId, startDateStr, price, noOfDays);
+		        
+		       // boolean res= bookingUtil.addBooking(book1);
+		        String res= bookingUtil.addBooking(book1);
+		        response.getWriter().println("res");
+//		        if (res) {
+//		        	response.getWriter().println("booked");
+//		        }
+		        
+		}
+	}
+	
+	
+	
+	
+	
+	
+
+}

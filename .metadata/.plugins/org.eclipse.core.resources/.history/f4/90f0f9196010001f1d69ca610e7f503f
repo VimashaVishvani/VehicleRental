@@ -1,0 +1,7 @@
+package com.newUser;
+import com.user.*;
+
+public class newUserUtil extends userDbUtil {
+	
+
+}

@@ -1,0 +1,48 @@
+package com.VehicleOwner;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.user.DBconnect;
+
+public class vApplicationUtil {
+    private static Connection con = null;
+    
+    public static boolean insertData(vehicleApplication application1) {
+        con = DBconnect.getConnection();
+
+        if (con == null) {
+            // Handle connection failure
+            return false;
+        }
+
+        PreparedStatement pstmt = null;
+        String sql = "INSERT INTO your_table_name (vType, vModelName, vBrand, noOfSeats, price, ownerId) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, application1.getvType());
+            pstmt.setString(2, application1.getvModelName());
+            pstmt.setString(3, application1.getvBrand());
+            pstmt.setInt(4, application1.getNoOfSeats());
+            pstmt.setDouble(5, application1.getPrice());
+            pstmt.setString(6, application1.getOwnerId());
+
+            int rowsInserted = pstmt.executeUpdate();
+            return rowsInserted > 0; // Return true if insertion was successful
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Close resources
+            try {
+                if (pstmt != null) pstmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+package com.user;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class UserServlet
+ */
+@WebServlet("/UserServlet")
+public class UserServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String task = request.getParameter("task");
+		
+		if("changePW".equals(task)) {
+			String id = request.getParameter("userId");
+			user u1 = userDbUtil.getUserFromId(id);
+			String currentPassword = request.getParameter("currentPassword");
+			String newPw = request.getParameter("newPassword");	
+			String confirmPW = request.getParameter("confirmPassword");
+			
+			
+			response.getWriter().println(currentPassword);
+			
+			if(u1.getPassword().equals(currentPassword)) {
+				if(newPw.equals(confirmPW)) {
+					response.getWriter().println(confirmPW);
+					boolean result = userDbUtil.updatePW(newPw,id);
+					//response.getWriter().println(result);
+					if(result) {
+						response.getWriter().println("updated");
+						RequestDispatcher dis = request.getRequestDispatcher("userChangePw.jsp?res=password Changed&id="+id);
+						dis.forward(request, response);
+					}else {
+						RequestDispatcher dis = request.getRequestDispatcher("userChangePw.jsp?res=new passward did not confirmed correctly&id="+id);
+						dis.forward(request, response);
+					}
+					
+				}
+			}else {
+				
+				RequestDispatcher dis = request.getRequestDispatcher("userChangePw.jsp?res=password is wrong&id="+id);
+				dis.forward(request, response);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	}
+
+}

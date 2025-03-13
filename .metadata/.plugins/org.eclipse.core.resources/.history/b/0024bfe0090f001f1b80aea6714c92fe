@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%
+String userId = request.getParameter("id");
+String vehicleId = request.getParameter("vid");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Book the Car</title>
+</head>
+<body>
+
+<h2>Book the Car</h2>
+
+<form action="bookingServlet" method="post">
+    <label for="userId">User ID:</label><br>
+    <input type="text" id="userId" name="userId" value="<%= userId %>" readonly><br>
+    <input type="hidden"  name="userId" value="booktheCar" name="task">
+    
+    
+    <label for="vehicleId">Vehicle ID:</label><br>
+    <input type="text" id="vehicleId" name="vehicleId" value="<%= vehicleId %>" readonly><br>
+    
+    <label for="bookingDate">Booking Date:</label><br>
+    <input type="date" id="bookingDate" name="bookingDate" required><br>
+    
+    <label for="duration">Duration (in days):</label><br>
+    <input type="number" id="duration" name="duration" min="1" required><br>
+    
+    <input type="submit" value="Book Car">
+</form>
+
+</body>
+</html>

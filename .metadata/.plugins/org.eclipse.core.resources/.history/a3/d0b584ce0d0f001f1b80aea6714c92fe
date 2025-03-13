@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%
+String userId = request.getParameter("id");
+String vehicleId = request.getParameter("vid");
+String vehiclePricePerDay = request.getParameter("price");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Book the Car</title>
+    <style>
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Book the Car</h2>
+
+<form id="bookingForm" action="bookingServlet" method="post">
+    <label for="userId">User ID:</label><br>
+    <input type="text" id="userId" name="userId" value="<%= userId %>" readonly><br>
+    <input type="hidden" name="task" value="booktheCar">
+    
+    <label for="vehicleId">Vehicle ID:</label><br>
+    <input type="text" id="vehicleId" name="vehicleId" value="<%= vehicleId %>" readonly><br>
+    
+    <label for="bookingDate">Booking Start Date:</label><br>
+    <input type="date" id="startDate" name="startDate" required><br>
+    
+    <label for="endDate">Booking End Date:</label><br>
+    <input type="date" id="endDate" name="endDate" required><br>
+    
+    <label for="duration">Duration (in days):</label><br>
+    <input type="number" id="duration" name="duration" min="1" readonly><br>
+    
+    <label for="totalPrice">Total Price:</label><br>
+    <input type="text" id="totalPrice" name="totalPrice" readonly><br>
+    
+    <!-- Change type to button to prevent form submission -->
+    <button type="button" id="calculatePriceButton">pay</button>
+</form>
+
+<!-- Popup div to display the price -->
+<div id="pricePopup" class="popup">
+    <p id="priceMessage"></p>
+    <button type="button" id="payButton">book the vehicle</button>
+</div>
+
+<script>
+// Function to calculate the duration and total price
+function calculatePrice() {
+    var startDate = new Date(document.getElementById("startDate").value);
+    var endDate = new Date(document.getElementById("endDate").value);
+    
+    // Calculate the duration in days
+    var duration = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById("duration").value = duration;
+    
+    // Calculate the total price
+    var pricePerDay = <%= vehiclePricePerDay %>;
+    var totalPrice = duration * pricePerDay;
+    document.getElementById("totalPrice").value = totalPrice.toFixed(2);
+}
+
+document.getElementById("startDate").addEventListener("change", calculatePrice);
+document.getElementById("endDate").addEventListener("change", calculatePrice);
+
+document.getElementById("calculatePriceButton").addEventListener("click", function() {
+    calculatePrice();
+    
+    // Display the popup div
+    document.getElementById("pricePopup").style.display = "block";
+});
+
+document.getElementById("payButton").addEventListener("click", function() {
+    // Submit the form when the pay button is clicked
+    document.getElementById("bookingForm").submit();
+});
+</script>
+
+</body>
+</html>

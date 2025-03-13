@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<%
+String vehiclePricePerDay= request.getParameter("price"); 
+%>
+    <meta charset="UTF-8">
+    <title>Book the Car</title>
+</head>
+<body>
+
+<h2>Book the Car</h2>
+
+<form id="bookingForm" action="newS" method="get">
+    <label for="userId">User ID:</label><br>
+    <input type="text" id="userId" name="userId" value="${param.id}" readonly><br>
+    <input type="hidden" name="task" value="booktheCar">
+    
+    <label for="vehicleId">Vehicle ID:</label><br>
+    <input type="text" id="vehicleId" name="vehicleId" value="${param.vid}" readonly><br>
+    
+    <label for="bookingDate">Booking Start Date:</label><br>
+    <input type="date" id="startDate" name="startDate" required><br>
+    
+    <label for="endDate">Booking End Date:</label><br>
+    <input type="date" id="endDate" name="endDate" required><br>
+    
+ 
+    
+    <!-- Change type to button to prevent form submission -->
+    <input type="submit" value="Book Car">
+</form>
+
+
+
+</body>
+</html>

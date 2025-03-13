@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Vehicle_rentalDb/src/main/webapp/images/OIP (11).jpeg&apos; to &apos;placeholder.jpeg&apos;" description="Rename resource &apos;OIP (11).jpeg&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/images/OIP (11).jpeg" name="placeholder.jpeg" stamp="1715507772418" updateReferences="true"/>
+</session>

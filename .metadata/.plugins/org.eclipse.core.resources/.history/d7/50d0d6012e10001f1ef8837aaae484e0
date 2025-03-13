@@ -1,0 +1,101 @@
+package com.booking;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.user.DBconnect;
+import com.user.user;
+import com.vehicleApllication.*;
+
+
+public class bookingUtil {
+
+	
+	
+	private static Connection con = null;
+	private static ResultSet rs = null;
+	private static Statement stmt = null;
+
+
+    public static boolean addBooking(booking book) {
+    	
+    	
+    	 try {       
+    		 con = DBconnect.getConnection();
+    		 stmt = con.createStatement();
+		
+		        // SQL query to insert a new booking
+		        String sql = "INSERT INTO bookings (userid, vid, datefrom, noOfdays, price) VALUES ('" 
+		            + book.getUserId() + "', '" 
+		            + book.getVid() + "', '" 
+		            + book.getStartingDate() + "', " 
+		            + book.getDuration() + ", " 
+		            + book.getTotal() + ")";
+		
+		        int rowsAffected = stmt.executeUpdate(sql);
+		        
+		        // Check if insertion was successful
+		        if (rowsAffected > 0) {
+		            return true;
+		        } else {
+		            return false;
+		        }
+		        
+    		}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		       
+		        
+//		        try {
+//		        	  int rowsAffected = statement.executeUpdate(sql);
+//				        
+//				        // Check if insertion was successful
+//				        if (rowsAffected > 0) {
+//				            return sql;
+//				        } else {
+//				            return sql;
+//				        }
+//		        } catch (SQLException e) {
+//		            e.printStackTrace();
+//		            return sql;
+//		        }
+		        
+		      
+		    }
+    
+    
+    public static List<booking> getAllBookingsOfUser(String userId) throws SQLException {
+        List<booking> users = new ArrayList<>();
+        
+        try {
+        	con=DBconnect.getConnection();
+    		stmt = con.createStatement();
+    		String sql = "SELECT * FROM booking WHERE userid="+userId;
+    		rs = stmt.executeQuery(sql);
+    		 while (rs.next()) {
+    	            int id = rs.getInt("id");
+    	            String name = rs.getString("name");
+    	            String password = rs.getString("password");
+    	            String email = rs.getString("gmail");
+    	            String phoneNumber = rs.getString("phonNumber");
+    	            String role = rs.getString("role");
+    	            user user = new user(id, name, password, email, phoneNumber, role);
+    	            users.add(user);
+    	        }
+        }catch(Exception e) {
+    		e.printStackTrace();
+    	}
+        
+        
+        
+     
+        return users;
+    }
+    
+    
+}
