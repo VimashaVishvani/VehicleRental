@@ -10,7 +10,7 @@
     
 </head>
 <body>
-<%@ include file="common_nav.jsp"%>
+<%@ include file="dashboardNav.jsp"%>
 
 
 	<%

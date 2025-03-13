@@ -13,9 +13,18 @@ String pw = request.getParameter("pw");
 <%@ include file="common_header.jsp"%>
 <!-- Include Bootstrap CSS -->
 
+	<!-- <style>
+			body {
+		      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+		      height: 100vh;
+		      display: flex;
+		      align-items: center;
+		      justify-content: center;
+    		}	
+		</style> -->
 </head>
 <body>
-	<%@ include file="common_nav.jsp"%>
+	<%@ include file="dashboardNav.jsp"%>
 
 	<div class="container">
 		<%-- <div class="pass-change-form">
